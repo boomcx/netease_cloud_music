@@ -6,6 +6,126 @@ part of 'home_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$searchHash() => r'f7630cec6daf493fab5be0788e0737d3adef6676';
+
+/// Copied from Dart SDK
+class _SystemHash {
+  _SystemHash._();
+
+  static int combine(int hash, int value) {
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + value);
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
+    return hash ^ (hash >> 6);
+  }
+
+  static int finish(int hash) {
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
+    // ignore: parameter_assignments
+    hash = hash ^ (hash >> 11);
+    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
+  }
+}
+
+typedef SearchRef = AutoDisposeFutureProviderRef<void>;
+
+/// See also [search].
+@ProviderFor(search)
+const searchProvider = SearchFamily();
+
+/// See also [search].
+class SearchFamily extends Family<AsyncValue<void>> {
+  /// See also [search].
+  const SearchFamily();
+
+  /// See also [search].
+  SearchProvider call(
+    String query, {
+    int limit = 10,
+    int type = 1,
+  }) {
+    return SearchProvider(
+      query,
+      limit: limit,
+      type: type,
+    );
+  }
+
+  @override
+  SearchProvider getProviderOverride(
+    covariant SearchProvider provider,
+  ) {
+    return call(
+      provider.query,
+      limit: provider.limit,
+      type: provider.type,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'searchProvider';
+}
+
+/// See also [search].
+class SearchProvider extends AutoDisposeFutureProvider<void> {
+  /// See also [search].
+  SearchProvider(
+    this.query, {
+    this.limit = 10,
+    this.type = 1,
+  }) : super.internal(
+          (ref) => search(
+            ref,
+            query,
+            limit: limit,
+            type: type,
+          ),
+          from: searchProvider,
+          name: r'searchProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$searchHash,
+          dependencies: SearchFamily._dependencies,
+          allTransitiveDependencies: SearchFamily._allTransitiveDependencies,
+        );
+
+  final String query;
+  final int limit;
+  final int type;
+
+  @override
+  bool operator ==(Object other) {
+    return other is SearchProvider &&
+        other.query == query &&
+        other.limit == limit &&
+        other.type == type;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, query.hashCode);
+    hash = _SystemHash.combine(hash, limit.hashCode);
+    hash = _SystemHash.combine(hash, type.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
 String _$homeHash() => r'722cc440ef17dde9c4454574d3abd295f04f36db';
 
 /// See also [Home].

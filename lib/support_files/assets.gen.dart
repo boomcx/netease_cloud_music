@@ -16,9 +16,6 @@ class $AssetsIconsGen {
   AssetGenImage get icLauncher =>
       const AssetGenImage('assets/icons/ic_launcher.png');
 
-  /// File path: assets/icons/icon.png
-  AssetGenImage get icon => const AssetGenImage('assets/icons/icon.png');
-
   /// File path: assets/icons/icon100.png
   AssetGenImage get icon100 => const AssetGenImage('assets/icons/icon100.png');
 
@@ -40,17 +37,20 @@ class $AssetsIconsGen {
   /// File path: assets/icons/icon110.png
   AssetGenImage get icon110 => const AssetGenImage('assets/icons/icon110.png');
 
+  /// File path: assets/icons/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/icons/logo.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
         icLauncher,
-        icon,
         icon100,
         icon101,
         icon102,
         icon107,
         icon108,
         icon109,
-        icon110
+        icon110,
+        logo
       ];
 }
 

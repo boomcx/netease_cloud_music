@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:netease_cloud_music/base.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'home_provider.freezed.dart';
 part 'home_provider.g.dart';
@@ -44,4 +45,14 @@ class Counter extends _$Counter {
   void increment() {
     state += 1;
   }
+}
+
+@riverpod
+FutureOr<void> search(
+  SearchRef ref,
+  String query, {
+  int limit = 10,
+  int type = 1,
+}) {
+  return ref.read(apiClientProvider).search(query, limit: limit, type: type);
 }

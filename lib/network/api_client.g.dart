@@ -25,13 +25,13 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
-      method: 'DELETE',
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/user/logout',
+          '/logout',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -39,21 +39,20 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<AppToken> login(LoginByPasswordParams params) async {
+  Future<AppToken> login() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(params.toJson());
+    final Map<String, dynamic>? _data = null;
     final _result =
         await _dio.fetch<Map<String, dynamic>>(_setStreamType<AppToken>(Options(
-      method: 'POST',
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/user/login',
+              '/register/anonimous',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -63,9 +62,17 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<dynamic> search(String keywords) async {
+  Future<dynamic> search(
+    String keywords, {
+    int limit = 20,
+    int type = 1,
+  }) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'keywords': keywords};
+    final queryParameters = <String, dynamic>{
+      r'keywords': keywords,
+      r'limit': limit,
+      r'type': type,
+    };
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
@@ -102,7 +109,7 @@ class _ApiClient implements ApiClient {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$apiClientHash() => r'9793016845b426f9149bf1359f2d2f9ac9648f4a';
+String _$apiClientHash() => r'adce4bbdc98c596943a4df621a596c96d49b16fb';
 
 /// See also [apiClient].
 @ProviderFor(apiClient)

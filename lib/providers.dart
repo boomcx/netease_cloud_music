@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 export 'providers/app.dart';
-export 'providers/user_auth.dart';
 export 'providers/user.dart';
 
 class ProviderLogger extends ProviderObserver {

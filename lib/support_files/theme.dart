@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:io';
+// import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -153,13 +153,13 @@ final kAppThemeData = ThemeData(
     bodyMedium: TextStyle(
       color: _appColors.text1,
       // Flutter 3.X，在苹果机上中文字重渲染有问题，需要指定字体修复
-      fontFamilyFallback: Platform.isIOS ? const ['PingFang SC'] : null,
+      // fontFamilyFallback: Platform.isIOS ? const ['PingFang SC'] : null,
     ),
     // 大部分地方的文字颜色
     titleMedium: TextStyle(
       color: _appColors.text1,
       // Flutter 3.X，在苹果机上中文字重渲染有问题，需要指定字体修复
-      fontFamilyFallback: Platform.isIOS ? const ['PingFang SC'] : null,
+      // fontFamilyFallback: Platform.isIOS ? const ['PingFang SC'] : null,
     ),
   ),
   cupertinoOverrideTheme: NoDefaultCupertinoThemeData(
@@ -170,10 +170,10 @@ final kAppThemeData = ThemeData(
         color: _appColors.text1,
         fontFamily: FontFamily.dolpgin,
         // Flutter 3.X，在苹果机上中文字重渲染有问题，需要指定字体修复
-        fontFamilyFallback: Platform.isIOS ? const ['PingFang SC'] : null,
+        // fontFamilyFallback: Platform.isIOS ? const ['PingFang SC'] : null,
       ),
       navTitleTextStyle: TextStyle(
-        fontSize: 17.w,
+        fontSize: 17.sp,
         fontWeight: FontWeight.bold,
         color: _appColors.text1,
       ),
@@ -183,7 +183,7 @@ final kAppThemeData = ThemeData(
     backgroundColor: _appColors.white,
     iconTheme: IconThemeData(color: _appColors.text1),
     titleTextStyle: TextStyle(
-      fontSize: 17.w,
+      fontSize: 17.sp,
       fontWeight: FontWeight.bold,
       color: _appColors.text1,
     ),

@@ -11,18 +11,18 @@ class NetInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    final token = _ref.read(userAuthProvider).valueOrNull;
+    final token = _ref.watch(tokenProvider);
     if (token != null) {
-      options.headers['Authorization'] = 'Bearer ${token.token}';
+      options.headers['cookie'] = token.cookie;
     }
     handler.next(options);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    Map dataMap;
+    var dataMap = <String, dynamic>{};
     if (response.data is Map) {
-      dataMap = response.data;
+      dataMap = Map.from(response.data);
     } else if (response.data is String) {
       dataMap = jsonDecode(response.data);
     } else {
@@ -42,7 +42,7 @@ class NetInterceptor extends Interceptor {
       );
       return;
     }
-    response.data = dataMap['result'];
+    response.data = dataMap;
     handler.next(response);
   }
 }
