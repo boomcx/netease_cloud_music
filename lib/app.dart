@@ -7,6 +7,7 @@ export 'network/domain.dart';
 
 export './support_files/theme.dart';
 export './support_files/assets.gen.dart';
+export './support_files/fonts.gen.dart';
 
 // export './app/routes/app_pages.dart';
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:netease_cloud_music/app.dart';
+import 'package:netease_cloud_music/base.dart';
 import '../providers/home_provider.dart';
 
 class HomeView extends ConsumerWidget {
@@ -12,7 +14,12 @@ class HomeView extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HomeView'),
+        title: const Text(
+          'HOMEVIEW - 123456789',
+          style: TextStyle(
+            fontFamily: FontFamily.musicStreet,
+          ),
+        ),
       ),
       body: Center(
         child: Column(
@@ -25,12 +32,17 @@ class HomeView extends ConsumerWidget {
               onPressed: () => ref.read(counterProvider.notifier).increment(),
               child: Text(
                 'single provider: $count2',
-                style: TextStyle(
-                  fontFamily: 'Dolpgin',
-                  // fontWeight: FontWeight.w500,
-                  fontSize: 30,
-                ),
               ),
+            ),
+            SvgAssets(
+              // Assets.svg.neOutlineFind,
+              // Assets.svg.neOutlineMine,
+              // Assets.svg.neOutlinePodcast,
+              Assets.svg.neOutlineFind,
+
+              width: 330,
+              height: 330,
+              color: Colors.redAccent,
             ),
           ],
         ),

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
-import 'package:star_menu/star_menu.dart';
+import 'package:netease_cloud_music/base/widgets/svg_image_view.dart';
+import 'package:netease_cloud_music/router.dart';
 
 import 'app.dart';
 
-enum TabbarType { home, mine }
+enum TabbarType { find, podcast, mine, attention, community }
 
 class TabbarScaffold extends StatefulWidget {
   const TabbarScaffold({
     super.key,
     required this.body,
-    this.type = TabbarType.home,
+    this.type = TabbarType.find,
   });
 
   final Widget body;
@@ -27,20 +28,53 @@ class _TabbarScaffoldState extends State<TabbarScaffold> {
 
   final _tabList = [
     {
-      'title': '首页',
-      'icon': 'home',
+      'title': '发现',
+      'icon': Assets.svg.neOutlineFind,
       'onTap': (BuildContext context) {
-        context.go('Routes.HOME');
+        context.go(PageNames.find);
       },
     },
     {
-      'title': '我的',
-      'icon': 'home',
+      'title': '播客',
+      'icon': Assets.svg.neOutlinePodcast,
       'onTap': (BuildContext context) {
         // if (!ref.read(isLoggedProvider)) {
         //   context.push('/login');
         // } else {
-        context.go('Routes.MINE');
+        context.go(PageNames.podcast);
+        // }
+      },
+    },
+    {
+      'title': '我的',
+      'icon': Assets.svg.neOutlineMine,
+      'onTap': (BuildContext context) {
+        // if (!ref.read(isLoggedProvider)) {
+        //   context.push('/login');
+        // } else {
+        context.go(PageNames.mine);
+        // }
+      },
+    },
+    {
+      'title': '关注',
+      'icon': Assets.svg.neOutlineMine,
+      'onTap': (BuildContext context) {
+        // if (!ref.read(isLoggedProvider)) {
+        //   context.push('/login');
+        // } else {
+        context.go(PageNames.attention);
+        // }
+      },
+    },
+    {
+      'title': '社区',
+      'icon': Assets.svg.neOutlineMine,
+      'onTap': (BuildContext context) {
+        // if (!ref.read(isLoggedProvider)) {
+        //   context.push('/login');
+        // } else {
+        context.go(PageNames.community);
         // }
       },
     },
@@ -51,9 +85,6 @@ class _TabbarScaffoldState extends State<TabbarScaffold> {
     super.initState();
     _children = List.generate(_tabList.length, (index) => const SizedBox());
     _updateChildren();
-    // SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-    //   mobLinkMount();
-    // });
   }
 
   void _updateChildren() {
@@ -75,7 +106,6 @@ class _TabbarScaffoldState extends State<TabbarScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: const _SectorFabButton(),
       body: Column(
         children: [
           Expanded(
@@ -94,53 +124,6 @@ class _TabbarScaffoldState extends State<TabbarScaffold> {
   }
 }
 
-class _SectorFabButton extends StatelessWidget {
-  const _SectorFabButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return StarMenu(
-      items: const [
-        Icon(Icons.ac_unit_outlined),
-        Icon(Icons.ac_unit_outlined),
-        Icon(Icons.ac_unit_outlined),
-      ],
-      params: StarMenuParameters(
-          shape: MenuShape.circle,
-          circleShapeParams: const CircleShapeParams(
-            radiusX: 85,
-            radiusY: 85,
-            startAngle: 90,
-            endAngle: 170,
-          ),
-          backgroundParams: BackgroundParams(
-            sigmaX: 1,
-            sigmaY: 1,
-            animatedBlur: true,
-            animatedBackgroundColor: true,
-            backgroundColor: Colors.black.withOpacity(0.05),
-          )),
-      onItemTapped: (index, controller) {
-        logger.i(index);
-      },
-      child: Container(
-        margin: const EdgeInsets.only(right: 10, bottom: 10),
-        width: 50,
-        height: 50,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          color: Colors.blue[400],
-          boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 5)],
-        ),
-        child: const Icon(
-          Icons.ac_unit_outlined,
-          color: Colors.white,
-        ),
-      ),
-    );
-  }
-}
-
 class _TabBar extends StatelessWidget {
   const _TabBar({
     Key? key,
@@ -153,53 +136,26 @@ class _TabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.appColors;
-
     List<Widget> children = [];
 
     for (int i = 0; i < tabList.length; i++) {
       children.add(
         Expanded(
-          child: GestureDetector(
-            onTap: () => (tabList[i]['onTap'] as Function).call(context),
-            behavior: HitTestBehavior.opaque,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  'assets/images/ic_${tabList[i]['icon']}_${i == index ? 'slt' : 'nor'}.png',
-                  width: 26,
-                  height: 26,
-                ),
-                const SizedBox(height: 3),
-                Text(
-                  tabList[i]['title'] as String,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: i == index ? colors.primary : colors.text4,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          child: _Item(tabList[i], index == i),
         ),
       );
     }
-
-    final right = MediaQuery.of(context).size.width / (tabList.length + 2);
 
     return _AppEventlistener(
       child: MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
         child: Container(
-          padding: EdgeInsets.only(right: right),
           decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 10,
+                color: Colors.black.withOpacity(0.05),
+                blurRadius: 1,
               )
             ],
           ),
@@ -223,6 +179,58 @@ class _TabBar extends StatelessWidget {
   }
 }
 
+class _Item extends StatelessWidget {
+  const _Item(
+    this.item,
+    this.isSelected, {
+    super.key,
+  });
+
+  final Map item;
+  final bool isSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.appColors;
+    return GestureDetector(
+      onTap: () => (item['onTap'] as Function).call(context),
+      behavior: HitTestBehavior.opaque,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 24,
+            height: 24,
+            padding: EdgeInsets.all(isSelected ? 2 : 0),
+            decoration: BoxDecoration(
+              color: isSelected ? colors.primary : colors.white,
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: SvgAssets(
+              item['icon'],
+              color: isSelected ? colors.white : colors.gray,
+            ),
+          ),
+          // Image.asset(
+          //   'assets/images/ic_${tabList[i]['icon']}_${i == index ? 'slt' : 'nor'}.png',
+          //   width: 26,
+          //   height: 26,
+          // ),
+          const SizedBox(height: 2),
+          Text(
+            item['title'] as String,
+            style: TextStyle(
+              fontSize: 10,
+              fontWeight: FontWeight.w500,
+              color: isSelected ? colors.primary : colors.gray,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _AppEventlistener extends HookWidget {
   const _AppEventlistener({
     Key? key,
@@ -234,17 +242,17 @@ class _AppEventlistener extends HookWidget {
   @override
   Widget build(BuildContext context) {
     // useEffect(() {
-      // final needLoginSub = AppService.bus.on<AppNeedToLogin>().listen((event) {
-        // if (GoRouter.of(context).location != '/login') {
-        //   ref.read(authNotifierProvider.notifier).logout();
-        //   context
-        //     ..go('/')
-        //     ..push('/login');
-        // }
-      // });
-      // return () {
-      //   needLoginSub.cancel();
-      // };
+    // final needLoginSub = AppService.bus.on<AppNeedToLogin>().listen((event) {
+    // if (GoRouter.of(context).location != '/login') {
+    //   ref.read(authNotifierProvider.notifier).logout();
+    //   context
+    //     ..go('/')
+    //     ..push('/login');
+    // }
+    // });
+    // return () {
+    //   needLoginSub.cancel();
+    // };
     // });
     return child;
   }

@@ -9,6 +9,51 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsIconsGen {
+  const $AssetsIconsGen();
+
+  /// File path: assets/icons/ic_launcher.png
+  AssetGenImage get icLauncher =>
+      const AssetGenImage('assets/icons/ic_launcher.png');
+
+  /// File path: assets/icons/icon.png
+  AssetGenImage get icon => const AssetGenImage('assets/icons/icon.png');
+
+  /// File path: assets/icons/icon100.png
+  AssetGenImage get icon100 => const AssetGenImage('assets/icons/icon100.png');
+
+  /// File path: assets/icons/icon101.png
+  AssetGenImage get icon101 => const AssetGenImage('assets/icons/icon101.png');
+
+  /// File path: assets/icons/icon102.png
+  AssetGenImage get icon102 => const AssetGenImage('assets/icons/icon102.png');
+
+  /// File path: assets/icons/icon107.png
+  AssetGenImage get icon107 => const AssetGenImage('assets/icons/icon107.png');
+
+  /// File path: assets/icons/icon108.png
+  AssetGenImage get icon108 => const AssetGenImage('assets/icons/icon108.png');
+
+  /// File path: assets/icons/icon109.png
+  AssetGenImage get icon109 => const AssetGenImage('assets/icons/icon109.png');
+
+  /// File path: assets/icons/icon110.png
+  AssetGenImage get icon110 => const AssetGenImage('assets/icons/icon110.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+        icLauncher,
+        icon,
+        icon100,
+        icon101,
+        icon102,
+        icon107,
+        icon108,
+        icon109,
+        icon110
+      ];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -1048,6 +1093,7 @@ class $AssetsSvgGen {
 class Assets {
   Assets._();
 
+  static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
 }

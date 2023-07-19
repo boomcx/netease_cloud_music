@@ -28,8 +28,8 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ScreenUtil.init(context, designSize: const Size(375, 734));
-    final router = ref.watch(routerProvider);
+    ScreenUtil.init(context, designSize: const Size(375, 667));
+    final router = ref.read(routerProvider);
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,

@@ -13,6 +13,7 @@ export 'base/widgets/app_bar.dart';
 export 'base/widgets/data_scaffold.dart';
 export 'base/widgets/empty_data_view.dart';
 export 'base/widgets/network_image_view.dart';
+export 'base/widgets/svg_image_view.dart';
 export 'base/widgets/toast.dart';
 export 'base/widgets/primary_button.dart';
 

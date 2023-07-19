@@ -1,9 +1,12 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:netease_cloud_music/support_files/fonts.gen.dart';
 
 extension AppTheme on BuildContext {
   AppColors get appColors => Theme.of(this).extension<AppColors>()!;
@@ -21,12 +24,13 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.textFieldFill,
     required this.divider1,
     required this.divider2,
-    required this.comFFF,
-    required this.com000,
+    required this.white,
+    required this.balck,
     required this.background,
     required this.backgroundGrey,
     required this.shimmerBaseColor,
     required this.shimmerHighlightColor,
+    required this.gray,
   });
 
   final Color primary;
@@ -39,12 +43,13 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color textFieldFill;
   final Color divider1;
   final Color divider2;
-  final Color comFFF;
-  final Color com000;
+  final Color white;
+  final Color balck;
   final Color background;
   final Color backgroundGrey;
   final Color shimmerBaseColor;
   final Color shimmerHighlightColor;
+  final Color gray;
 
   @override
   ThemeExtension<AppColors> copyWith({
@@ -58,12 +63,13 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? textFieldFill,
     Color? divider1,
     Color? divider2,
-    Color? comFFF,
-    Color? com000,
+    Color? white,
+    Color? balck,
     Color? background,
     Color? backgroundGrey,
     Color? shimmerBaseColor,
     Color? shimmerHighlightColor,
+    Color? gray,
   }) {
     return AppColors(
       primary: primary ?? this.primary,
@@ -76,13 +82,14 @@ class AppColors extends ThemeExtension<AppColors> {
       textFieldFill: textFieldFill ?? this.textFieldFill,
       divider1: divider1 ?? this.divider1,
       divider2: divider2 ?? this.divider2,
-      comFFF: comFFF ?? this.comFFF,
-      com000: com000 ?? this.com000,
+      white: white ?? this.white,
+      balck: balck ?? this.balck,
       background: background ?? this.background,
       backgroundGrey: backgroundGrey ?? this.backgroundGrey,
       shimmerBaseColor: shimmerBaseColor ?? this.shimmerBaseColor,
       shimmerHighlightColor:
           shimmerHighlightColor ?? this.shimmerHighlightColor,
+      gray: gray ?? this.gray,
     );
   }
 
@@ -103,20 +110,21 @@ class AppColors extends ThemeExtension<AppColors> {
       textFieldFill: Color.lerp(textFieldFill, other.textFieldFill, t)!,
       divider1: Color.lerp(divider1, other.divider1, t)!,
       divider2: Color.lerp(divider2, other.divider2, t)!,
-      comFFF: Color.lerp(comFFF, other.comFFF, t)!,
-      com000: Color.lerp(com000, other.com000, t)!,
+      white: Color.lerp(white, other.white, t)!,
+      balck: Color.lerp(balck, other.balck, t)!,
       background: Color.lerp(background, other.background, t)!,
       backgroundGrey: Color.lerp(backgroundGrey, other.backgroundGrey, t)!,
       shimmerBaseColor:
           Color.lerp(shimmerBaseColor, other.shimmerBaseColor, t)!,
       shimmerHighlightColor:
           Color.lerp(shimmerHighlightColor, other.shimmerHighlightColor, t)!,
+      gray: Color.lerp(gray, other.gray, t)!,
     );
   }
 }
 
 const _appColors = AppColors(
-  primary: Color(0xFF017AD5),
+  primary: Color(0xFFff3c44),
   secondary: Color(0xFFE85921),
   text1: Color(0xFF2E2D37),
   text2: Color(0xFF525A60),
@@ -126,12 +134,13 @@ const _appColors = AppColors(
   textFieldFill: Color(0xFFFAFAFA),
   divider1: Color(0xFFFAFAFA),
   divider2: Color(0xFFE9E9E9),
-  comFFF: Color(0xFFFFFFFF),
-  com000: Color(0xFF000000),
+  white: Color(0xFFFFFFFF),
+  balck: Color(0xFF000000),
   background: Color(0xFFFFFFFF),
   backgroundGrey: Color(0xFFFAFAFA),
   shimmerBaseColor: Color(0xFFDFDFDF),
   shimmerHighlightColor: Color(0xFFCCCCCC),
+  gray: Color(0xFF999999),
 );
 
 /// 默认主题配置
@@ -159,21 +168,22 @@ final kAppThemeData = ThemeData(
       textStyle: TextStyle(
         // fontFamily: 'PingFang SC',
         color: _appColors.text1,
+        fontFamily: FontFamily.dolpgin,
         // Flutter 3.X，在苹果机上中文字重渲染有问题，需要指定字体修复
         fontFamilyFallback: Platform.isIOS ? const ['PingFang SC'] : null,
       ),
       navTitleTextStyle: TextStyle(
-        fontSize: 16.w,
+        fontSize: 17.w,
         fontWeight: FontWeight.bold,
         color: _appColors.text1,
       ),
     ),
   ),
   appBarTheme: AppBarTheme(
-    backgroundColor: _appColors.comFFF,
+    backgroundColor: _appColors.white,
     iconTheme: IconThemeData(color: _appColors.text1),
     titleTextStyle: TextStyle(
-      fontSize: 16.w,
+      fontSize: 17.w,
       fontWeight: FontWeight.bold,
       color: _appColors.text1,
     ),
