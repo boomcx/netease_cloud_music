@@ -31,16 +31,24 @@ class _SystemHash {
 
 typedef SearchRef = AutoDisposeFutureProviderRef<void>;
 
-/// See also [search].
+/// 将某个模块的请求独立出来，可以更便捷的使用
+///
+/// Copied from [search].
 @ProviderFor(search)
 const searchProvider = SearchFamily();
 
-/// See also [search].
+/// 将某个模块的请求独立出来，可以更便捷的使用
+///
+/// Copied from [search].
 class SearchFamily extends Family<AsyncValue<void>> {
-  /// See also [search].
+  /// 将某个模块的请求独立出来，可以更便捷的使用
+  ///
+  /// Copied from [search].
   const SearchFamily();
 
-  /// See also [search].
+  /// 将某个模块的请求独立出来，可以更便捷的使用
+  ///
+  /// Copied from [search].
   SearchProvider call(
     String query, {
     int limit = 10,
@@ -79,9 +87,13 @@ class SearchFamily extends Family<AsyncValue<void>> {
   String? get name => r'searchProvider';
 }
 
-/// See also [search].
+/// 将某个模块的请求独立出来，可以更便捷的使用
+///
+/// Copied from [search].
 class SearchProvider extends AutoDisposeFutureProvider<void> {
-  /// See also [search].
+  /// 将某个模块的请求独立出来，可以更便捷的使用
+  ///
+  /// Copied from [search].
   SearchProvider(
     this.query, {
     this.limit = 10,

@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:netease_cloud_music/base.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:netease_cloud_music/base.dart';
+
 part 'home_provider.freezed.dart';
 part 'home_provider.g.dart';
 
@@ -47,6 +48,7 @@ class Counter extends _$Counter {
   }
 }
 
+/// 将某个模块的请求独立出来，可以更便捷的使用
 @riverpod
 FutureOr<void> search(
   SearchRef ref,

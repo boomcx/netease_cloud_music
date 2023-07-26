@@ -1,5 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:netease_cloud_music/pages/attention/attention.dart';
+import 'package:netease_cloud_music/pages/community/community.dart';
+import 'package:netease_cloud_music/pages/mine/views/mine_view.dart';
+import 'package:netease_cloud_music/pages/podcast/podcast.dart';
 import 'package:netease_cloud_music/tabbar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:netease_cloud_music/pages/home/views/home_view.dart';
@@ -30,36 +35,46 @@ GoRouter router(RouterRef ref) {
       GoRoute(path: '/', redirect: (context, state) => PageNames.find),
       GoRoute(
         path: PageNames.find,
-        builder: (context, state) => const TabbarScaffold(
-          body: HomeView(),
+        pageBuilder: (context, state) => const CupertinoPage(
+          child: TabbarScaffold(
+            body: HomeView(),
+          ),
         ),
       ),
       GoRoute(
         path: PageNames.podcast,
-        builder: (context, state) => const TabbarScaffold(
-          type: TabbarType.podcast,
-          body: HomeView(),
+        pageBuilder: (context, state) => const CupertinoPage(
+          child: TabbarScaffold(
+            type: TabbarType.podcast,
+            body: PodcastView(),
+          ),
         ),
       ),
       GoRoute(
         path: PageNames.mine,
-        builder: (context, state) => const TabbarScaffold(
-          type: TabbarType.mine,
-          body: HomeView(),
+        pageBuilder: (context, state) => const CupertinoPage(
+          child: TabbarScaffold(
+            type: TabbarType.mine,
+            body: MineView(),
+          ),
         ),
       ),
       GoRoute(
         path: PageNames.attention,
-        builder: (context, state) => const TabbarScaffold(
-          type: TabbarType.attention,
-          body: HomeView(),
+        pageBuilder: (context, state) => const CupertinoPage(
+          child: TabbarScaffold(
+            type: TabbarType.attention,
+            body: AttentionView(),
+          ),
         ),
       ),
       GoRoute(
         path: PageNames.community,
-        builder: (context, state) => const TabbarScaffold(
-          type: TabbarType.community,
-          body: HomeView(),
+        pageBuilder: (context, state) => const CupertinoPage(
+          child: TabbarScaffold(
+            type: TabbarType.community,
+            body: CommunityView(),
+          ),
         ),
       ),
     ],

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
-import 'package:netease_cloud_music/base/widgets/svg_image_view.dart';
 import 'package:netease_cloud_music/router.dart';
 
 import 'app.dart';
@@ -29,14 +28,14 @@ class _TabbarScaffoldState extends State<TabbarScaffold> {
   final _tabList = [
     {
       'title': '发现',
-      'icon': Assets.svg.neOutlineFind,
+      'icon': Assets.images.tabbar.find,
       'onTap': (BuildContext context) {
         context.go(PageNames.find);
       },
     },
     {
       'title': '播客',
-      'icon': Assets.svg.neOutlinePodcast,
+      'icon': Assets.images.tabbar.podcast,
       'onTap': (BuildContext context) {
         // if (!ref.read(isLoggedProvider)) {
         //   context.push('/login');
@@ -47,7 +46,7 @@ class _TabbarScaffoldState extends State<TabbarScaffold> {
     },
     {
       'title': '我的',
-      'icon': Assets.svg.neOutlineMine,
+      'icon': Assets.images.tabbar.mine,
       'onTap': (BuildContext context) {
         // if (!ref.read(isLoggedProvider)) {
         //   context.push('/login');
@@ -58,7 +57,7 @@ class _TabbarScaffoldState extends State<TabbarScaffold> {
     },
     {
       'title': '关注',
-      'icon': Assets.svg.neOutlineMine,
+      'icon': Assets.images.tabbar.focus,
       'onTap': (BuildContext context) {
         // if (!ref.read(isLoggedProvider)) {
         //   context.push('/login');
@@ -69,7 +68,7 @@ class _TabbarScaffoldState extends State<TabbarScaffold> {
     },
     {
       'title': '社区',
-      'icon': Assets.svg.neOutlineMine,
+      'icon': Assets.images.tabbar.podcast,
       'onTap': (BuildContext context) {
         // if (!ref.read(isLoggedProvider)) {
         //   context.push('/login');
@@ -194,23 +193,11 @@ class _Item extends StatelessWidget {
     final colors = context.appColors;
     return GestureDetector(
       onTap: () => (item['onTap'] as Function).call(context),
-      behavior: HitTestBehavior.opaque,
+      behavior: HitTestBehavior.translucent,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            width: 24,
-            height: 24,
-            padding: EdgeInsets.all(isSelected ? 2 : 0),
-            decoration: BoxDecoration(
-              color: isSelected ? colors.primary : colors.white,
-              borderRadius: BorderRadius.circular(50),
-            ),
-            child: SvgAssets(
-              item['icon'],
-              color: isSelected ? colors.white : colors.gray,
-            ),
-          ),
+          _ItemImage(isSelected: isSelected, image: item['icon']),
           // Image.asset(
           //   'assets/images/ic_${tabList[i]['icon']}_${i == index ? 'slt' : 'nor'}.png',
           //   width: 26,
@@ -226,6 +213,34 @@ class _Item extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _ItemImage extends StatelessWidget {
+  const _ItemImage({
+    super.key,
+    required this.isSelected,
+    required this.image,
+  });
+
+  final bool isSelected;
+  final AssetGenImage image;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.appColors;
+    return Container(
+      width: 24,
+      height: 24,
+      padding: EdgeInsets.all(isSelected ? 3 : 0),
+      decoration: BoxDecoration(
+        color: isSelected ? colors.primary : colors.white,
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: image.image(
+        color: isSelected ? colors.white : colors.gray,
       ),
     );
   }
