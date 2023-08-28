@@ -186,7 +186,7 @@ class Toast {
         });
   }
 
-  static void hideLoading() {
+  static void dismiss() {
     BotToast.closeAllLoading();
   }
 }

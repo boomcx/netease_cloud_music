@@ -6,13 +6,13 @@ part of 'user.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$isLoginHash() => r'5d88bf2626c4aaeecc258362003c645b941df0ff';
+String _$isLoginHash() => r'63d4e5b3213a7ed132a38981a7e2cc310817fe18';
 
 /// 用户登录状态
 ///
 /// Copied from [isLogin].
 @ProviderFor(isLogin)
-final isLoginProvider = AutoDisposeProvider<bool>.internal(
+final isLoginProvider = Provider<bool>.internal(
   isLogin,
   name: r'isLoginProvider',
   debugGetCreateSourceHash:
@@ -21,8 +21,8 @@ final isLoginProvider = AutoDisposeProvider<bool>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef IsLoginRef = AutoDisposeProviderRef<bool>;
-String _$userHash() => r'9200423bba073df8a420794c6fa576ace10191ee';
+typedef IsLoginRef = ProviderRef<bool>;
+String _$userHash() => r'7bcd60f4e8f5c593d348ccbc997b1a5e0e297bee';
 
 /// See also [User].
 @ProviderFor(User)

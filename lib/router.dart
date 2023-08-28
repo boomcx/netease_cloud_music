@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:netease_cloud_music/pages/attention/attention.dart';
 import 'package:netease_cloud_music/pages/community/community.dart';
@@ -32,9 +31,9 @@ GoRouter router(RouterRef ref) {
       return null;
     },
     routes: [
-      GoRoute(path: '/', redirect: (context, state) => PageNames.find),
+      GoRoute(path: '/', redirect: (context, state) => Routes.find),
       GoRoute(
-        path: PageNames.find,
+        path: Routes.find,
         pageBuilder: (context, state) => const CupertinoPage(
           child: TabbarScaffold(
             body: HomeView(),
@@ -42,7 +41,7 @@ GoRouter router(RouterRef ref) {
         ),
       ),
       GoRoute(
-        path: PageNames.podcast,
+        path: Routes.podcast,
         pageBuilder: (context, state) => const CupertinoPage(
           child: TabbarScaffold(
             type: TabbarType.podcast,
@@ -51,7 +50,7 @@ GoRouter router(RouterRef ref) {
         ),
       ),
       GoRoute(
-        path: PageNames.mine,
+        path: Routes.mine,
         pageBuilder: (context, state) => const CupertinoPage(
           child: TabbarScaffold(
             type: TabbarType.mine,
@@ -60,7 +59,7 @@ GoRouter router(RouterRef ref) {
         ),
       ),
       GoRoute(
-        path: PageNames.attention,
+        path: Routes.attention,
         pageBuilder: (context, state) => const CupertinoPage(
           child: TabbarScaffold(
             type: TabbarType.attention,
@@ -69,7 +68,7 @@ GoRouter router(RouterRef ref) {
         ),
       ),
       GoRoute(
-        path: PageNames.community,
+        path: Routes.community,
         pageBuilder: (context, state) => const CupertinoPage(
           child: TabbarScaffold(
             type: TabbarType.community,
@@ -81,7 +80,7 @@ GoRouter router(RouterRef ref) {
   );
 }
 
-class PageNames {
+class Routes {
   /// 发现
   static const String find = '/tabbar/find';
 

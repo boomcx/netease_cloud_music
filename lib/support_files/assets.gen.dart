@@ -81,6 +81,18 @@ class $AssetsImagesGen {
   AssetGenImage get icNavBack =>
       const AssetGenImage('assets/images/ic_nav_back.png');
 
+  /// File path: assets/images/ic_nav_menu.png
+  AssetGenImage get icNavMenu =>
+      const AssetGenImage('assets/images/ic_nav_menu.png');
+
+  /// File path: assets/images/ic_nav_voice.png
+  AssetGenImage get icNavVoice =>
+      const AssetGenImage('assets/images/ic_nav_voice.png');
+
+  /// File path: assets/images/image_holder.png
+  AssetGenImage get imageHolder =>
+      const AssetGenImage('assets/images/image_holder.png');
+
   $AssetsImagesTabbarGen get tabbar => const $AssetsImagesTabbarGen();
 
   /// List of all assets
@@ -90,7 +102,10 @@ class $AssetsImagesGen {
         cm4PlayDiscCover,
         cm4PlayDiscMask,
         cm4PlayingMask,
-        icNavBack
+        icNavBack,
+        icNavMenu,
+        icNavVoice,
+        imageHolder
       ];
 }
 

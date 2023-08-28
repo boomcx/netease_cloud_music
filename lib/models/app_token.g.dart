@@ -7,7 +7,6 @@ part of 'app_token.dart';
 // **************************************************************************
 
 _$_AppToken _$$_AppTokenFromJson(Map<String, dynamic> json) => _$_AppToken(
-      token: json['token'] as String? ?? '',
       code: json['code'] == null
           ? 0
           : const JsonAlwaysNum().fromJson(json['code']),
@@ -22,7 +21,6 @@ _$_AppToken _$$_AppTokenFromJson(Map<String, dynamic> json) => _$_AppToken(
 
 Map<String, dynamic> _$$_AppTokenToJson(_$_AppToken instance) =>
     <String, dynamic>{
-      'token': instance.token,
       'code': const JsonAlwaysNum().toJson(instance.code),
       'userId': const JsonAlwaysString().toJson(instance.userId),
       'createTime': const JsonAlwaysString().toJson(instance.createTime),

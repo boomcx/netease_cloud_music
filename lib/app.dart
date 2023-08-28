@@ -11,4 +11,6 @@ export './support_files/fonts.gen.dart';
 
 // export './app/routes/app_pages.dart';
 
+export 'package:flutter_screenutil/flutter_screenutil.dart';
+
 final logger = Logger();

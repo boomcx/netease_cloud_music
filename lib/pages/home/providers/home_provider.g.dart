@@ -6,7 +6,7 @@ part of 'home_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$searchHash() => r'f7630cec6daf493fab5be0788e0737d3adef6676';
+String _$searchHash() => r'cdfcd0574eeee2578a75613b14567d3933d5c23c';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -32,21 +32,25 @@ class _SystemHash {
 typedef SearchRef = AutoDisposeFutureProviderRef<void>;
 
 /// 将某个模块的请求独立出来，可以更便捷的使用
+/// 搜索接口
 ///
 /// Copied from [search].
 @ProviderFor(search)
 const searchProvider = SearchFamily();
 
 /// 将某个模块的请求独立出来，可以更便捷的使用
+/// 搜索接口
 ///
 /// Copied from [search].
 class SearchFamily extends Family<AsyncValue<void>> {
   /// 将某个模块的请求独立出来，可以更便捷的使用
+  /// 搜索接口
   ///
   /// Copied from [search].
   const SearchFamily();
 
   /// 将某个模块的请求独立出来，可以更便捷的使用
+  /// 搜索接口
   ///
   /// Copied from [search].
   SearchProvider call(
@@ -88,10 +92,12 @@ class SearchFamily extends Family<AsyncValue<void>> {
 }
 
 /// 将某个模块的请求独立出来，可以更便捷的使用
+/// 搜索接口
 ///
 /// Copied from [search].
 class SearchProvider extends AutoDisposeFutureProvider<void> {
   /// 将某个模块的请求独立出来，可以更便捷的使用
+  /// 搜索接口
   ///
   /// Copied from [search].
   SearchProvider(
@@ -132,6 +138,99 @@ class SearchProvider extends AutoDisposeFutureProvider<void> {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, query.hashCode);
     hash = _SystemHash.combine(hash, limit.hashCode);
+    hash = _SystemHash.combine(hash, type.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+String _$bannerHash() => r'0684d734adcb3e2d5192fae20487a6a8f927b647';
+typedef BannerRef = AutoDisposeFutureProviderRef<List<BannerEntity>>;
+
+/// 轮播图
+///
+/// Copied from [banner].
+@ProviderFor(banner)
+const bannerProvider = BannerFamily();
+
+/// 轮播图
+///
+/// Copied from [banner].
+class BannerFamily extends Family<AsyncValue<List<BannerEntity>>> {
+  /// 轮播图
+  ///
+  /// Copied from [banner].
+  const BannerFamily();
+
+  /// 轮播图
+  ///
+  /// Copied from [banner].
+  BannerProvider call({
+    int? type,
+  }) {
+    return BannerProvider(
+      type: type,
+    );
+  }
+
+  @override
+  BannerProvider getProviderOverride(
+    covariant BannerProvider provider,
+  ) {
+    return call(
+      type: provider.type,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'bannerProvider';
+}
+
+/// 轮播图
+///
+/// Copied from [banner].
+class BannerProvider extends AutoDisposeFutureProvider<List<BannerEntity>> {
+  /// 轮播图
+  ///
+  /// Copied from [banner].
+  BannerProvider({
+    this.type,
+  }) : super.internal(
+          (ref) => banner(
+            ref,
+            type: type,
+          ),
+          from: bannerProvider,
+          name: r'bannerProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$bannerHash,
+          dependencies: BannerFamily._dependencies,
+          allTransitiveDependencies: BannerFamily._allTransitiveDependencies,
+        );
+
+  final int? type;
+
+  @override
+  bool operator ==(Object other) {
+    return other is BannerProvider && other.type == type;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, type.hashCode);
 
     return _SystemHash.finish(hash);

@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
@@ -30,7 +31,7 @@ class _TabbarScaffoldState extends State<TabbarScaffold> {
       'title': '发现',
       'icon': Assets.images.tabbar.find,
       'onTap': (BuildContext context) {
-        context.go(PageNames.find);
+        context.go(Routes.find);
       },
     },
     {
@@ -40,7 +41,7 @@ class _TabbarScaffoldState extends State<TabbarScaffold> {
         // if (!ref.read(isLoggedProvider)) {
         //   context.push('/login');
         // } else {
-        context.go(PageNames.podcast);
+        context.go(Routes.podcast);
         // }
       },
     },
@@ -51,7 +52,7 @@ class _TabbarScaffoldState extends State<TabbarScaffold> {
         // if (!ref.read(isLoggedProvider)) {
         //   context.push('/login');
         // } else {
-        context.go(PageNames.mine);
+        context.go(Routes.mine);
         // }
       },
     },
@@ -62,7 +63,7 @@ class _TabbarScaffoldState extends State<TabbarScaffold> {
         // if (!ref.read(isLoggedProvider)) {
         //   context.push('/login');
         // } else {
-        context.go(PageNames.attention);
+        context.go(Routes.attention);
         // }
       },
     },
@@ -73,7 +74,7 @@ class _TabbarScaffoldState extends State<TabbarScaffold> {
         // if (!ref.read(isLoggedProvider)) {
         //   context.push('/login');
         // } else {
-        context.go(PageNames.community);
+        context.go(Routes.community);
         // }
       },
     },
@@ -231,7 +232,7 @@ class _ItemImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.appColors;
-    return Container(
+    final child = Container(
       width: 24,
       height: 24,
       padding: EdgeInsets.all(isSelected ? 3 : 0),
@@ -243,6 +244,13 @@ class _ItemImage extends StatelessWidget {
         color: isSelected ? colors.white : colors.gray,
       ),
     );
+    if (isSelected) {
+      return ZoomIn(
+        duration: const Duration(milliseconds: 150),
+        child: child,
+      );
+    }
+    return child;
   }
 }
 

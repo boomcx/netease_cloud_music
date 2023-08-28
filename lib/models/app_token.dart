@@ -7,7 +7,6 @@ part 'app_token.g.dart';
 @freezed
 class AppToken with _$AppToken {
   const factory AppToken({
-    @Default('') String token,
     @JsonAlwaysNum() @Default(0) num code,
     @JsonAlwaysString() @Default('') String userId,
     @JsonAlwaysString() @Default('') String createTime,

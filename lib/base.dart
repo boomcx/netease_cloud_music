@@ -16,6 +16,7 @@ export 'base/widgets/network_image_view.dart';
 export 'base/widgets/svg_image_view.dart';
 export 'base/widgets/toast.dart';
 export 'base/widgets/primary_button.dart';
+export 'base/widgets/gaps.dart';
 
 // refresh
 export 'base/refresh/refresh.dart';

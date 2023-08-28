@@ -35,8 +35,18 @@ abstract class ApiClient {
   @GET('/logout')
   Future<void> logout();
 
+  /// 游客登陆
+  ///
+  /// 说明 : 直接调用此接口, 可获取游客cookie,如果遇到其他接口未登录状态报400状态码需要验证的错误,可使用此接口获取游客cookie避免报错
   @GET('/register/anonimous')
   Future<AppToken> login();
+
+  /// 获取用户详情
+  ///
+  /// 说明 : 登录后调用此接口 , 传入用户 id, 可以获取用户详情
+  /// 必选参数 : uid : 用户 id
+  @GET('/user/account')
+  Future user(@Query('uid') String uid);
 
   ///说明 : 调用此接口 , 传入搜索关键词可以搜索该音乐 / 专辑 / 歌手 / 歌单 / 用户 , 关键词可以多个 , 以空格隔开 , 如 " 周杰伦 搁浅 "( 不需要登录 ), 可通过 /song/url 接口传入歌曲 id 获取具体的播放链接
   ///
@@ -50,11 +60,16 @@ abstract class ApiClient {
     @Query('type') int type = 1,
   });
 
-  // @GET('https://api.thecatapi.com/v1/images/search')
-  // Future<List<ArticleModel>> getArticle(
-  //   @Query('limit') int limit,
-  // );
-  // Future<List<ArticleModel>> getArticle(@Queries() Map<String, dynamic> query);
+  /// 说明 : 调用此接口 , 可获取 banner( 轮播图 ) 数据
+  /// type:资源类型,对应以下类型,默认为 0 即 PC
+  /// 0: pc
+  /// 1: android
+  /// 2: iphone
+  /// 3: ipad
+  @GET('/banner')
+  Future<List<BannerEntity>> banner({
+    @Query('type') int? type,
+  });
 }
 
 /**

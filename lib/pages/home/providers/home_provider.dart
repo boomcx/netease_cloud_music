@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:netease_cloud_music/models.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:netease_cloud_music/base.dart';
 
@@ -49,12 +52,26 @@ class Counter extends _$Counter {
 }
 
 /// 将某个模块的请求独立出来，可以更便捷的使用
+/// 搜索接口
 @riverpod
-FutureOr<void> search(
+Future<void> search(
   SearchRef ref,
   String query, {
   int limit = 10,
   int type = 1,
 }) {
   return ref.read(apiClientProvider).search(query, limit: limit, type: type);
+}
+
+/// 轮播图
+@riverpod
+Future<List<BannerEntity>> banner(
+  BannerRef ref, {
+  int? type,
+}) async {
+  try {
+    return ref.read(apiClientProvider).banner(type: type ?? 0);
+  } catch (e) {
+    return [];
+  }
 }

@@ -13,7 +13,12 @@ class NetInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     final token = _ref.watch(tokenProvider);
     if (token != null) {
-      options.headers['cookie'] = token.cookie;
+      if (options.method == 'GET') {
+        options.queryParameters['cookie'] = token.cookie;
+      } else if (options.method == 'POST') {
+        options.data['cookie'] = token.cookie;
+      }
+      //   options.headers['cookie'] = token.cookie;
     }
     handler.next(options);
   }
@@ -42,7 +47,19 @@ class NetInterceptor extends Interceptor {
       );
       return;
     }
-    response.data = dataMap;
+
+    /// 案例接口除了返回值code为固定key值
+    /// 其他具体数据为非固定key
+    dynamic data;
+    if (dataMap['data'] != null) {
+      data = dataMap['data'];
+    } else if (dataMap['banners'] != null) {
+      data = dataMap['banners'];
+    } else if (dataMap['result'] != null) {
+      data = dataMap['result'];
+    }
+
+    response.data = data ?? dataMap;
     handler.next(response);
   }
 }

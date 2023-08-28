@@ -12,6 +12,29 @@ extension AppTheme on BuildContext {
   AppColors get appColors => Theme.of(this).extension<AppColors>()!;
 }
 
+const _appColors = AppColors(
+  primary: Color(0xFFff3c44),
+  secondary: Color.fromARGB(255, 205, 210, 241),
+  text1: Color(0xFF2E2D37),
+  text2: Color(0xFF525A60),
+  text3: Color(0xFF8E959B),
+  text4: Color(0xFFB3B8CB),
+  textPlaceholder: Color(0xFFC7C9D1),
+  textFieldFill: Color(0xFFFAFAFA),
+  divider1: Color(0xFFFAFAFA),
+  divider2: Color(0xFFE9E9E9),
+  white: Color(0xFFFFFFFF),
+  black: Color(0xFF000000),
+  background: Color(0xFFFFFFFF),
+  backgroundGrey: Color(0xFFFAFAFA),
+  shimmerBaseColor: Color(0xFFDFDFDF),
+  shimmerHighlightColor: Color(0xFFCCCCCC),
+  gray: Color(0xFF999999),
+  hexD6D5F5: Color(0xFFD6D5F5),
+  hexE9D6EA: Color(0xFFE9D6EA),
+  hexE8E5FA: Color(0xFFE8E5FA),
+);
+
 class AppColors extends ThemeExtension<AppColors> {
   const AppColors({
     required this.primary,
@@ -25,12 +48,15 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.divider1,
     required this.divider2,
     required this.white,
-    required this.balck,
+    required this.black,
     required this.background,
     required this.backgroundGrey,
     required this.shimmerBaseColor,
     required this.shimmerHighlightColor,
     required this.gray,
+    required this.hexD6D5F5,
+    required this.hexE9D6EA,
+    required this.hexE8E5FA,
   });
 
   final Color primary;
@@ -44,12 +70,21 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color divider1;
   final Color divider2;
   final Color white;
-  final Color balck;
+  final Color black;
   final Color background;
   final Color backgroundGrey;
   final Color shimmerBaseColor;
   final Color shimmerHighlightColor;
   final Color gray;
+
+  /// 搜索框颜色-深
+  final Color hexD6D5F5;
+
+  /// 搜索框颜色-浅
+  final Color hexE9D6EA;
+
+  /// 首页渐变背景
+  final Color hexE8E5FA;
 
   @override
   ThemeExtension<AppColors> copyWith({
@@ -64,12 +99,15 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? divider1,
     Color? divider2,
     Color? white,
-    Color? balck,
+    Color? black,
     Color? background,
     Color? backgroundGrey,
     Color? shimmerBaseColor,
     Color? shimmerHighlightColor,
     Color? gray,
+    Color? hexD3D4F3,
+    Color? hexEDD8EB,
+    Color? hexE8E5FA,
   }) {
     return AppColors(
       primary: primary ?? this.primary,
@@ -83,13 +121,16 @@ class AppColors extends ThemeExtension<AppColors> {
       divider1: divider1 ?? this.divider1,
       divider2: divider2 ?? this.divider2,
       white: white ?? this.white,
-      balck: balck ?? this.balck,
+      black: black ?? this.black,
       background: background ?? this.background,
       backgroundGrey: backgroundGrey ?? this.backgroundGrey,
       shimmerBaseColor: shimmerBaseColor ?? this.shimmerBaseColor,
       shimmerHighlightColor:
           shimmerHighlightColor ?? this.shimmerHighlightColor,
       gray: gray ?? this.gray,
+      hexD6D5F5: hexD3D4F3 ?? this.hexD6D5F5,
+      hexE9D6EA: hexEDD8EB ?? this.hexE9D6EA,
+      hexE8E5FA: hexE8E5FA ?? this.hexE8E5FA,
     );
   }
 
@@ -111,7 +152,7 @@ class AppColors extends ThemeExtension<AppColors> {
       divider1: Color.lerp(divider1, other.divider1, t)!,
       divider2: Color.lerp(divider2, other.divider2, t)!,
       white: Color.lerp(white, other.white, t)!,
-      balck: Color.lerp(balck, other.balck, t)!,
+      black: Color.lerp(black, other.black, t)!,
       background: Color.lerp(background, other.background, t)!,
       backgroundGrey: Color.lerp(backgroundGrey, other.backgroundGrey, t)!,
       shimmerBaseColor:
@@ -119,29 +160,12 @@ class AppColors extends ThemeExtension<AppColors> {
       shimmerHighlightColor:
           Color.lerp(shimmerHighlightColor, other.shimmerHighlightColor, t)!,
       gray: Color.lerp(gray, other.gray, t)!,
+      hexD6D5F5: Color.lerp(hexD6D5F5, other.hexD6D5F5, t)!,
+      hexE9D6EA: Color.lerp(hexE9D6EA, other.hexE9D6EA, t)!,
+      hexE8E5FA: Color.lerp(hexE8E5FA, other.hexE8E5FA, t)!,
     );
   }
 }
-
-const _appColors = AppColors(
-  primary: Color(0xFFff3c44),
-  secondary: Color(0xFFE85921),
-  text1: Color(0xFF2E2D37),
-  text2: Color(0xFF525A60),
-  text3: Color(0xFF8E959B),
-  text4: Color(0xFFB3B8CB),
-  textPlaceholder: Color(0xFFC7C9D1),
-  textFieldFill: Color(0xFFFAFAFA),
-  divider1: Color(0xFFFAFAFA),
-  divider2: Color(0xFFE9E9E9),
-  white: Color(0xFFFFFFFF),
-  balck: Color(0xFF000000),
-  background: Color(0xFFFFFFFF),
-  backgroundGrey: Color(0xFFFAFAFA),
-  shimmerBaseColor: Color(0xFFDFDFDF),
-  shimmerHighlightColor: Color(0xFFCCCCCC),
-  gray: Color(0xFF999999),
-);
 
 /// 默认主题配置
 final kAppThemeData = ThemeData(

@@ -8,20 +8,24 @@ class AAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AAppBar({
     Key? key,
     this.leading,
+    this.leadingWidth,
     this.title,
     this.titleWidget,
     this.backgroundColor,
-    this.shadow = true,
+    this.shadow = false,
     this.systemOverlayStyle,
     this.backIconColor,
     this.actions,
     this.isRootNavigator = false,
+    this.padding,
   }) : super(key: key);
 
   final Widget? leading;
+  final double? leadingWidth;
   final String? title;
   final Widget? titleWidget;
   final List<Widget>? actions;
+  final EdgeInsets? padding;
   final Color? backgroundColor;
   final bool shadow;
   final SystemUiOverlayStyle? systemOverlayStyle;
@@ -31,7 +35,9 @@ class AAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: padding,
       decoration: BoxDecoration(
+        color: backgroundColor,
         boxShadow: shadow
             ? [
                 BoxShadow(
@@ -43,9 +49,9 @@ class AAppBar extends StatelessWidget implements PreferredSizeWidget {
             : null,
       ),
       child: AppBar(
-        backgroundColor: backgroundColor,
+        backgroundColor: Colors.transparent,
         titleSpacing: 0,
-        leadingWidth: kMinInteractiveDimensionCupertino * 2,
+        leadingWidth: leadingWidth ?? kMinInteractiveDimensionCupertino,
         leading: _buildLeading(context),
         automaticallyImplyLeading: !isRootNavigator,
         title: titleWidget ?? (title != null ? Text(title!) : null),
@@ -56,8 +62,8 @@ class AAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   Widget? _buildLeading(BuildContext context) {
+    if (isRootNavigator && leading == null) return null;
     if (leading != null) return leading;
-    if (isRootNavigator) return null;
     final route = ModalRoute.of(context);
     if (route is PageRoute && (route.canPop || route.fullscreenDialog)) {
       return AppBarBackButton(color: backIconColor);

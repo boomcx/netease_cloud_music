@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 class JsonAlwaysString extends JsonConverter<String, dynamic> {
@@ -38,6 +39,26 @@ class JsonAlwaysNum implements JsonConverter<num, dynamic> {
 
   @override
   num toJson(num object) => object;
+}
+
+class JsonAlwaysColor implements JsonConverter<Color, dynamic> {
+  const JsonAlwaysColor();
+
+  @override
+  Color fromJson(dynamic json) {
+    var color = '$json';
+    switch (color) {
+      case 'blue':
+        return Colors.blue;
+      case 'red':
+        return Colors.red;
+      default:
+        return Colors.black;
+    }
+  }
+
+  @override
+  Color toJson(Color object) => object;
 }
 
 // 处理服务器返回枚举数据

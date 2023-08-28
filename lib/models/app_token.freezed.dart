@@ -20,7 +20,6 @@ AppToken _$AppTokenFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AppToken {
-  String get token => throw _privateConstructorUsedError;
   @JsonAlwaysNum()
   num get code => throw _privateConstructorUsedError;
   @JsonAlwaysString()
@@ -41,8 +40,7 @@ abstract class $AppTokenCopyWith<$Res> {
       _$AppTokenCopyWithImpl<$Res, AppToken>;
   @useResult
   $Res call(
-      {String token,
-      @JsonAlwaysNum() num code,
+      {@JsonAlwaysNum() num code,
       @JsonAlwaysString() String userId,
       @JsonAlwaysString() String createTime,
       String cookie});
@@ -61,17 +59,12 @@ class _$AppTokenCopyWithImpl<$Res, $Val extends AppToken>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = null,
     Object? code = null,
     Object? userId = null,
     Object? createTime = null,
     Object? cookie = null,
   }) {
     return _then(_value.copyWith(
-      token: null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -100,8 +93,7 @@ abstract class _$$_AppTokenCopyWith<$Res> implements $AppTokenCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String token,
-      @JsonAlwaysNum() num code,
+      {@JsonAlwaysNum() num code,
       @JsonAlwaysString() String userId,
       @JsonAlwaysString() String createTime,
       String cookie});
@@ -118,17 +110,12 @@ class __$$_AppTokenCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = null,
     Object? code = null,
     Object? userId = null,
     Object? createTime = null,
     Object? cookie = null,
   }) {
     return _then(_$_AppToken(
-      token: null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -153,8 +140,7 @@ class __$$_AppTokenCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AppToken implements _AppToken {
   const _$_AppToken(
-      {this.token = '',
-      @JsonAlwaysNum() this.code = 0,
+      {@JsonAlwaysNum() this.code = 0,
       @JsonAlwaysString() this.userId = '',
       @JsonAlwaysString() this.createTime = '',
       this.cookie = ''});
@@ -162,9 +148,6 @@ class _$_AppToken implements _AppToken {
   factory _$_AppToken.fromJson(Map<String, dynamic> json) =>
       _$$_AppTokenFromJson(json);
 
-  @override
-  @JsonKey()
-  final String token;
   @override
   @JsonKey()
   @JsonAlwaysNum()
@@ -183,7 +166,7 @@ class _$_AppToken implements _AppToken {
 
   @override
   String toString() {
-    return 'AppToken(token: $token, code: $code, userId: $userId, createTime: $createTime, cookie: $cookie)';
+    return 'AppToken(code: $code, userId: $userId, createTime: $createTime, cookie: $cookie)';
   }
 
   @override
@@ -191,7 +174,6 @@ class _$_AppToken implements _AppToken {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AppToken &&
-            (identical(other.token, token) || other.token == token) &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.createTime, createTime) ||
@@ -202,7 +184,7 @@ class _$_AppToken implements _AppToken {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, token, code, userId, createTime, cookie);
+      Object.hash(runtimeType, code, userId, createTime, cookie);
 
   @JsonKey(ignore: true)
   @override
@@ -220,16 +202,13 @@ class _$_AppToken implements _AppToken {
 
 abstract class _AppToken implements AppToken {
   const factory _AppToken(
-      {final String token,
-      @JsonAlwaysNum() final num code,
+      {@JsonAlwaysNum() final num code,
       @JsonAlwaysString() final String userId,
       @JsonAlwaysString() final String createTime,
       final String cookie}) = _$_AppToken;
 
   factory _AppToken.fromJson(Map<String, dynamic> json) = _$_AppToken.fromJson;
 
-  @override
-  String get token;
   @override
   @JsonAlwaysNum()
   num get code;
